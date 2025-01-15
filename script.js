@@ -6,6 +6,8 @@ let msgContainer = document.querySelector(".msg-container");
 let msg = document.querySelector("#msg");
 let startBtn = document.querySelector("#start-btn"); // Start game button
 let gameContainer = document.querySelector(".container"); // Game container
+let xScoreDisplay = document.querySelector("#x-score"); // X's score display
+let oScoreDisplay = document.querySelector("#o-score"); // O's score display
 
 // Game state variables
 let turnO = true; // Track the current player (true = "O", false = "X")
@@ -21,7 +23,7 @@ const winPatterns = [
   [1, 4, 7],
   [2, 5, 8],
   [2, 4, 6],
-  [3, 4, 5], 
+  [3, 4, 5],
   [6, 7, 8],
 ];
 
@@ -82,23 +84,28 @@ const enableBoxes = () => {
   for (let box of boxes) {
     box.disabled = false; // Enable box
     box.innerText = ""; // Clear text
+    box.classList.remove("highlight"); // Remove highlight class
   }
 };
 
-// Function to display the winner
-const showWinner = (winner) => {
+// Function to display the winner and highlight the winning buttons
+const showWinner = (winner, winningPattern) => {
   msg.innerText = `Congratulations, Winner is ${winner}`;
   msgContainer.classList.remove("hide"); // Show message
+
+  // Highlight the winning combination
+  winningPattern.forEach((index) => {
+    boxes[index].classList.add("highlight"); // Add a CSS class for styling
+  });
 
   // Update the score for the winner
   if (winner === "X") {
     xWins++;
+    xScoreDisplay.innerText = `X Wins: ${xWins}`;
   } else {
     oWins++;
+    oScoreDisplay.innerText = `O Wins: ${oWins}`;
   }
-
-  // Update score display
-  document.querySelector("#scoreboard").innerText = `Score: X = ${xWins}, O = ${oWins}`;
 
   disableBoxes(); // Disable further moves
 };
@@ -112,7 +119,7 @@ const checkWinner = () => {
 
     if (pos1Val !== "" && pos2Val !== "" && pos3Val !== "") {
       if (pos1Val === pos2Val && pos2Val === pos3Val) {
-        showWinner(pos1Val); // Announce the winner
+        showWinner(pos1Val, pattern); // Announce the winner and the winning pattern
         return true; // Winner found
       }
     }
@@ -126,7 +133,8 @@ resetBtn.addEventListener("click", () => {
   // Full reset: Clear scores and reset game
   xWins = 0;
   oWins = 0;
-  document.querySelector("#scoreboard").innerText = `Score: X = ${xWins}, O = ${oWins}`;
+  xScoreDisplay.innerText = `X Wins: ${xWins}`;
+  oScoreDisplay.innerText = `O Wins: ${oWins}`;
   resetGame();
 });
 

@@ -4,7 +4,7 @@
 }
 
 body {
-  background-color: #548687;
+  background-color: #BDBF09;
   text-align: center;
 }
 
@@ -22,7 +22,6 @@ h1 {
 .container {
   height: 70vh;
   display: flex;
-
   justify-content: center;
   align-items: center;
 }
@@ -44,17 +43,44 @@ h1 {
   border: none;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
   font-size: 8vmin;
-  color: #b0413e;
-  background-color: #ffffc7;
+  color: #D96C06;
+  background-color: #F5EFED;
 }
+
+.box:hover {
+  cursor: pointer;
+  background-color: #cac4c1;
+}
+
+.highlight {
+  background-color: #f39c12; /* Highlight color for the winning combination */
+  color: #fff; 
+}
+
 
 #reset-btn, #start-btn, #new-btn {
   padding: 1rem;
   font-size: 1.25rem;
-  background-color: #191913;
+  background-color: #2292A4;
   color: #fff;
   border-radius: 1rem;
   border: none;
+}
+
+#reset-btn:hover, #start-btn:hover, #new-btn:hover {
+  background-color: #187a89;
+  zoom: 105%;
+  font-weight: 800;
+  border: solid 2px black;
+  cursor: pointer;
+}
+
+#buttons {
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5vmin;
 }
 
 #msg {
