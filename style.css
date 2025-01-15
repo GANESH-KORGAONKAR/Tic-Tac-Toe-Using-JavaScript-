@@ -61,6 +61,7 @@ h1 {
 #reset-btn, #start-btn, #new-btn {
   padding: 1rem;
   font-size: 1.25rem;
+  font-weight: 700;
   background-color: #2292A4;
   color: #fff;
   border-radius: 1rem;
